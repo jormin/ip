@@ -14,8 +14,15 @@
 
 1. 代码中使用
     
+   获取地址数组
+    
     ```php
     Jormin\IP\IP:ip2addr('your ip');
+    ```
+    
+    获取地址字符串
+    ```php
+    Jormin\IP\IP:ip2addr('your ip', true, 'your glue');
     ```
 
 ## License

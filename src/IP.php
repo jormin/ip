@@ -40,7 +40,7 @@ class IP
 
         if (isset(self::$cached[$nip]) === TRUE)
         {
-            return self::$cached[$nip];
+            return $implode ? implode($glue, array_filter(self::$cached[$nip])) : self::$cached[$nip];
         }
         if (self::$fp === NULL)
         {
@@ -66,8 +66,7 @@ class IP
         }
         fseek(self::$fp, self::$offset['len'] + $index_offset['len'] - 1024);
         self::$cached[$nip] = explode("\t", fread(self::$fp, $index_length['len']));
-        $ipArr = self::$cached[$nip];
-        return $implode ? implode($glue, $ipArr) : $ipArr;
+        return $implode ? implode($glue, array_filter(self::$cached[$nip])) : self::$cached[$nip];
     }
 
     /**
