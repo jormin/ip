@@ -22,7 +22,7 @@
     
     获取地址字符串
     ```php
-    Jormin\IP\IP:ip2addr('your ip', true, 'your glue');
+    Jormin\IP\IP:ip2addr('your ip', 'your glue');
     ```
 
 ## License
