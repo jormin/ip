@@ -21,11 +21,10 @@ class IP
      * 解析IP地址
      *
      * @param $ip
-     * @param bool $implode 是否组合字符串
-     * @param string $glue 数组元素之间放置的内容
+     * @param string $glue 数组元素拼串分隔符
      * @return mixed|string
      */
-    public static function ip2addr($ip, $implode = false, $glue = ' ')
+    public static function ip2addr($ip, $glue = null)
     {
         if (empty($ip) === TRUE)
         {
@@ -40,7 +39,7 @@ class IP
 
         if (isset(self::$cached[$nip]) === TRUE)
         {
-            return $implode ? implode($glue, array_filter(self::$cached[$nip])) : self::$cached[$nip];
+            return $glue ? implode($glue, array_filter(self::$cached[$nip])) : self::$cached[$nip];
         }
         if (self::$fp === NULL)
         {
@@ -66,7 +65,7 @@ class IP
         }
         fseek(self::$fp, self::$offset['len'] + $index_offset['len'] - 1024);
         self::$cached[$nip] = explode("\t", fread(self::$fp, $index_length['len']));
-        return $implode ? implode($glue, array_filter(self::$cached[$nip])) : self::$cached[$nip];
+        return $glue ? implode($glue, array_filter(self::$cached[$nip])) : self::$cached[$nip];
     }
 
     /**
